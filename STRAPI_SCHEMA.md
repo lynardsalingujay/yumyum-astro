@@ -4,10 +4,11 @@ This document describes the required Strapi content types for the Astro Restaura
 
 ## 📋 Overview
 
-You need to create **2 content types** in your Strapi CMS:
+You need to create **3 content types** in your Strapi CMS:
 
 1. **Homepage** - Single Type (one instance)
 2. **Menu Items** - Collection Type (multiple instances)
+3. **Testimonials** - Collection Type (multiple instances)
 
 ## 🏠 Homepage (Single Type)
 
@@ -213,6 +214,18 @@ Configure in Strapi's `config/plugins.js` file.
    GET https://your-strapi.com/api/menu-items?populate[image][fields][0]=url&populate[cuisine][fields][0]=name
    ```
 
+   Testimonials:
+
+   ```
+   GET https://your-strapi.com/api/testimonials?populate=avatar&filters[isFeatured][$eq]=true
+   ```
+
+   Testimonials:
+
+   ```
+   GET https://your-strapi.com/api/testimonials?populate=avatar&filters[isFeatured][$eq]=true
+   ```
+
 3. **Use the debug page:**
 
    Start your Astro dev server and visit:
@@ -222,6 +235,95 @@ Configure in Strapi's `config/plugins.js` file.
    ```
 
    This shows the raw Strapi API response to help troubleshoot.
+
+## ⭐ Testimonials (Collection Type)
+
+### Content Type Setup
+
+1. In Strapi Admin, go to **Content-Type Builder**
+2. Click **Create new collection type**
+3. Name it: `testimonial` (Strapi will pluralize to `testimonials`)
+4. Display name: `Testimonial`
+
+### Testimonial Fields
+
+| Field Name     | Type           | Required | Description                                    |
+| -------------- | -------------- | -------- | ---------------------------------------------- |
+| `customerName` | Text (Short)   | Yes      | Full name of the customer                      |
+| `review`       | Text (Long)    | Yes      | Testimonial text (150-300 characters ideal)    |
+| `rating`       | Number (Integer) | Yes    | Star rating from 1 to 5                        |
+| `avatar`       | Media (Single) | No       | Customer photo or avatar image                 |
+| `title`        | Text (Short)   | No       | Job title or descriptor (e.g., "Regular Customer") |
+| `isVerified`   | Boolean        | No       | Show verified badge (for authentic reviews)    |
+| `isFeatured`   | Boolean        | No       | Display on homepage (true = show on homepage)  |
+| `date`         | Date           | No       | Date of the review                             |
+
+### Field Settings
+
+**customerName:**
+- Max length: 100 characters
+- Required
+
+**review:**
+- Type: Long text
+- Max length: 500 characters
+- Required
+- Recommended: 150-300 characters for best display
+
+**rating:**
+- Type: Integer
+- Min value: 1
+- Max value: 5
+- Required
+- Default value: 5
+
+**isFeatured:**
+- Type: Boolean
+- Default value: false
+- Note: Only testimonials with `isFeatured: true` will appear on the homepage
+
+**isVerified:**
+- Type: Boolean
+- Default value: false
+- Note: Shows a blue verified checkmark badge next to customer name
+
+### API Permissions
+
+Go to **Settings** → **Roles** → **Public**:
+
+Enable for Testimonial:
+- ✅ `find` - Get list of testimonials
+- ✅ `findOne` - Get single testimonial
+
+### Example Content
+
+```json
+{
+  "customerName": "Sarah Johnson",
+  "review": "The food was absolutely amazing! The flavors were perfect and the service was exceptional. I'll definitely be coming back soon.",
+  "rating": 5,
+  "avatar": <uploaded_image>,
+  "title": "Regular Customer",
+  "isVerified": true,
+  "isFeatured": true,
+  "date": "2026-01-08"
+}
+```
+
+### Testimonial Tips
+
+1. **Featured vs All**: Use `isFeatured: true` to showcase the best reviews on your homepage. Keep 3-6 featured testimonials for optimal display.
+
+2. **Avatar Images**: While optional, customer photos make testimonials more authentic. Use profile photos that are:
+   - Square format (1:1 aspect ratio)
+   - At least 200x200 pixels
+   - Clear and professional
+
+3. **Review Length**: Aim for 150-300 characters for best visual balance. Very short reviews lack detail; very long reviews may be truncated on mobile.
+
+4. **Star Ratings**: Be honest with ratings. Mix of 4-5 star reviews is more believable than all 5-star reviews.
+
+5. **Verified Badge**: Use sparingly for reviews you can verify (e.g., from email confirmations, known customers).
 
 ## 🔄 Content Workflow
 

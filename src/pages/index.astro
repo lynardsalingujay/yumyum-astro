@@ -9,6 +9,7 @@ import SimpleMenuCard from "../components/SimpleMenuCard.astro";
 import Hero from "../components/Hero.astro";
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import TestimonialSection from "../components/TestimonialSection.astro";
 
 // ⚡ BUILD-TIME DATA FETCHING
 // All Strapi API calls execute during build (astro build), NOT at runtime.
@@ -99,6 +100,9 @@ const heroData = Array.isArray(heroSection) ? heroSection[0] : heroSection;
         </div>
       </div>
     </section>
+
+    <!-- Testimonial Section -->
+    <TestimonialSection />
 
     <!-- Menu Preview Section -->
     <section id="menu" class="py-20 bg-cream-50">

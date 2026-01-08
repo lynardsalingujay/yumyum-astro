@@ -66,6 +66,26 @@ export interface MenuItem {
   attributes: MenuItemAttributes;
 }
 
+// Testimonial Types
+export interface TestimonialAttributes {
+  customerName: string;
+  review: string;
+  rating: number; // 1-5
+  date?: string;
+  avatar?: StrapiImage;
+  title?: string;
+  isVerified?: boolean;
+  isFeatured?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+}
+
+export interface Testimonial {
+  id: number;
+  attributes: TestimonialAttributes;
+}
+
 export interface StrapiResponse<T> {
   data: T[];
   meta: {
