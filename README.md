@@ -1,6 +1,6 @@
-# Astro Restaurant Template
+# YumYum
 
-A production-ready, fully-featured Astro template for restaurant, cafe, bakery, and food business websites. Integrated with Strapi CMS for easy content management and built with Tailwind CSS for beautiful, responsive design.
+A production-ready, fully-featured Astro website for the YumYum restaurant. Built with Astro 5+, integrated with Strapi CMS for easy content management and styled with Tailwind CSS for beautiful, responsive design.
 
 ## ✨ Features
 
@@ -28,7 +28,7 @@ A production-ready, fully-featured Astro template for restaurant, cafe, bakery, 
 
    ```bash
    git clone <your-repo-url>
-   cd astro-restaurant-template
+   cd yumyum-astro
    ```
 
 2. **Install dependencies**
@@ -141,11 +141,11 @@ This template includes placeholder content that should be customized before depl
 
 ### Text Content
 
-- **"Restaurant Name"** - Appears in navigation, footer, and page titles across all pages (13 instances)
+- **"Restaurant Name"** - Appears in navigation, footer, and page titles across all pages (should be replaced with "YumYum" or your preferred branding)
 - **Contact Information:**
-  - Email: `info@restaurant.com`
-  - Phone: `(555) 123-4567`
-  - Address: `123 Main Street, City, ST 12345`
+  - Email: `info@restaurant.com` (update to YumYum email)
+  - Phone: `(555) 123-4567` (update to YumYum phone)
+  - Address: `123 Main Street, City, ST 12345` (update to YumYum address)
 - **About Page:** `[Year]` placeholder in "Founded in [Year]" text
 - **Contact Page:**
   - `YOUR_FORM_ID` in Formspree form action URL
@@ -193,18 +193,18 @@ This template is free to use for personal and commercial projects.
 - Review [STRAPI_SCHEMA.md](STRAPI_SCHEMA.md) for Strapi setup
 - See [DEPLOYMENT.md](DEPLOYMENT.md) for deployment guidance
 
-## 🎯 Use Cases
+## 🎯 About YumYum
 
-Perfect for:
+YumYum is a modern restaurant website built with cutting-edge web technologies. This project showcases:
 
-- Restaurants
-- Cafes
-- Bakeries
-- Food trucks
-- Catering services
-- Any food business website
+- Fast, static site generation with Astro
+- Headless CMS integration with Strapi
+- Responsive design that works on all devices
+- Easy content management for restaurant staff
+- Optimized performance and SEO
+
+Perfect for restaurants, cafes, bakeries, food trucks, catering services, and any food business website.
 
 ---
 
-**Ready to create your restaurant website?** Start by customizing the colors in `tailwind.config.mjs` and updating the content in the page files!
-# yumyum-astro
+**Ready to customize your YumYum website?** Start by customizing the colors in `tailwind.config.mjs` and updating the content in the page files!
