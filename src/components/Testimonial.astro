@@ -1,32 +1,42 @@
 ---
-import { downloadStrapiImage, type Testimonial } from "../lib/strapi";
+import { getStrapiMedia, type Testimonial } from "../lib/strapi";
 
 interface Props {
   item: Testimonial;
 }
 
 const { item } = Astro.props;
-const { customerName, review, rating, avatar, title, isVerified } = item.attributes;
+const { customerName, review, rating, avatar, title, isVerified } =
+  item.attributes;
 
-// Download avatar image at build time
-const avatarUrl = await downloadStrapiImage(avatar?.data?.attributes?.url);
+// Get avatar image URL
+const avatarUrl = getStrapiMedia(avatar?.data?.attributes?.url);
+console.log(`[Testimonial] ${customerName}:`, {
+  hasAvatar: !!avatar?.data,
+  rawUrl: avatar?.data?.attributes?.url,
+  avatarUrl,
+});
 
 // Generate star rating (1-5)
 const stars = Array.from({ length: 5 }, (_, i) => i < rating);
 ---
 
-<div class="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col border-2 border-orange-100 hover:border-accent-300">
+<div
+  class="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col border-2 border-orange-100 hover:border-accent-300"
+>
   <!-- Star Rating -->
   <div class="flex gap-1 mb-4">
-    {stars.map((filled) => (
-      <svg
-        class={`w-5 h-5 ${filled ? 'text-accent-500' : 'text-gray-300'}`}
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-      </svg>
-    ))}
+    {
+      stars.map((filled) => (
+        <svg
+          class={`w-5 h-5 ${filled ? "text-accent-500" : "text-gray-300"}`}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ))
+    }
   </div>
 
   <!-- Review Text -->
@@ -36,29 +46,39 @@ const stars = Array.from({ length: 5 }, (_, i) => i < rating);
 
   <!-- Customer Info -->
   <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-    {avatarUrl ? (
-      <img
-        src={avatarUrl}
-        alt={customerName}
-        class="w-12 h-12 rounded-full object-cover border-2 border-accent-200"
-      />
-    ) : (
-      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white font-bold text-lg">
-        {customerName.charAt(0).toUpperCase()}
-      </div>
-    )}
+    {
+      avatarUrl ? (
+        <img
+          src={avatarUrl}
+          alt={customerName}
+          class="w-12 h-12 rounded-full object-cover border-2 border-accent-200"
+        />
+      ) : (
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white font-bold text-lg">
+          {customerName.charAt(0).toUpperCase()}
+        </div>
+      )
+    }
     <div class="flex-grow">
       <div class="flex items-center gap-2">
         <h4 class="font-semibold text-primary-700">{customerName}</h4>
-        {isVerified && (
-          <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-        )}
+        {
+          isVerified && (
+            <svg
+              class="w-4 h-4 text-blue-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          )
+        }
       </div>
-      {title && (
-        <p class="text-sm text-gray-500">{title}</p>
-      )}
+      {title && <p class="text-sm text-gray-500">{title}</p>}
     </div>
   </div>
 </div>

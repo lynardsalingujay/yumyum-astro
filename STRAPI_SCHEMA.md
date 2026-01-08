@@ -247,30 +247,33 @@ Configure in Strapi's `config/plugins.js` file.
 
 ### Testimonial Fields
 
-| Field Name     | Type           | Required | Description                                    |
-| -------------- | -------------- | -------- | ---------------------------------------------- |
-| `customerName` | Text (Short)   | Yes      | Full name of the customer                      |
-| `review`       | Text (Long)    | Yes      | Testimonial text (150-300 characters ideal)    |
-| `rating`       | Number (Integer) | Yes    | Star rating from 1 to 5                        |
-| `avatar`       | Media (Single) | No       | Customer photo or avatar image                 |
-| `title`        | Text (Short)   | No       | Job title or descriptor (e.g., "Regular Customer") |
-| `isVerified`   | Boolean        | No       | Show verified badge (for authentic reviews)    |
-| `isFeatured`   | Boolean        | No       | Display on homepage (true = show on homepage)  |
-| `date`         | Date           | No       | Date of the review                             |
+| Field Name     | Type             | Required | Description                                        |
+| -------------- | ---------------- | -------- | -------------------------------------------------- |
+| `customerName` | Text (Short)     | Yes      | Full name of the customer                          |
+| `review`       | Text (Long)      | Yes      | Testimonial text (150-300 characters ideal)        |
+| `rating`       | Number (Integer) | Yes      | Star rating from 1 to 5                            |
+| `avatar`       | Media (Single)   | No       | Customer photo or avatar image                     |
+| `title`        | Text (Short)     | No       | Job title or descriptor (e.g., "Regular Customer") |
+| `isVerified`   | Boolean          | No       | Show verified badge (for authentic reviews)        |
+| `isFeatured`   | Boolean          | No       | Display on homepage (true = show on homepage)      |
+| `date`         | Date             | No       | Date of the review                                 |
 
 ### Field Settings
 
 **customerName:**
+
 - Max length: 100 characters
 - Required
 
 **review:**
+
 - Type: Long text
 - Max length: 500 characters
 - Required
 - Recommended: 150-300 characters for best display
 
 **rating:**
+
 - Type: Integer
 - Min value: 1
 - Max value: 5
@@ -278,11 +281,13 @@ Configure in Strapi's `config/plugins.js` file.
 - Default value: 5
 
 **isFeatured:**
+
 - Type: Boolean
 - Default value: false
 - Note: Only testimonials with `isFeatured: true` will appear on the homepage
 
 **isVerified:**
+
 - Type: Boolean
 - Default value: false
 - Note: Shows a blue verified checkmark badge next to customer name
@@ -292,6 +297,7 @@ Configure in Strapi's `config/plugins.js` file.
 Go to **Settings** → **Roles** → **Public**:
 
 Enable for Testimonial:
+
 - ✅ `find` - Get list of testimonials
 - ✅ `findOne` - Get single testimonial
 
@@ -315,6 +321,7 @@ Enable for Testimonial:
 1. **Featured vs All**: Use `isFeatured: true` to showcase the best reviews on your homepage. Keep 3-6 featured testimonials for optimal display.
 
 2. **Avatar Images**: While optional, customer photos make testimonials more authentic. Use profile photos that are:
+
    - Square format (1:1 aspect ratio)
    - At least 200x200 pixels
    - Clear and professional

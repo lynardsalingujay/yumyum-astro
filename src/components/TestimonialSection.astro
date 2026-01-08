@@ -3,7 +3,9 @@ import { fetchStrapi, type Testimonial } from "../lib/strapi";
 import TestimonialComponent from "./Testimonial.astro";
 
 // Fetch testimonials and filter for featured ones
-const testimonialsResponse = await fetchStrapi<Testimonial>("testimonials?populate=avatar&filters[isFeatured][$eq]=true");
+const testimonialsResponse = await fetchStrapi<Testimonial>(
+  "testimonials?populate=*&filters[isFeatured][$eq]=true"
+);
 const strapiTestimonials = testimonialsResponse?.data || [];
 
 // Mock testimonials as fallback
@@ -12,7 +14,8 @@ const mockTestimonials: Testimonial[] = [
     id: 1,
     attributes: {
       customerName: "Maria Rodriguez",
-      review: "The best restaurant in town! The food is always fresh and flavorful. My family and I come here every weekend. The staff is incredibly friendly and the atmosphere is perfect for dining.",
+      review:
+        "The best restaurant in town! The food is always fresh and flavorful. My family and I come here every weekend. The staff is incredibly friendly and the atmosphere is perfect for dining.",
       rating: 5,
       title: "Regular Customer",
       isVerified: true,
@@ -25,16 +28,17 @@ const mockTestimonials: Testimonial[] = [
             alternativeText: "Maria Rodriguez",
             width: 150,
             height: 150,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   },
   {
     id: 2,
     attributes: {
       customerName: "James Chen",
-      review: "Outstanding food quality and presentation. Every dish is a masterpiece! The chef really knows how to combine flavors. I've tried many items on the menu and haven't been disappointed once.",
+      review:
+        "Outstanding food quality and presentation. Every dish is a masterpiece! The chef really knows how to combine flavors. I've tried many items on the menu and haven't been disappointed once.",
       rating: 5,
       title: "Food Enthusiast",
       isVerified: true,
@@ -47,16 +51,17 @@ const mockTestimonials: Testimonial[] = [
             alternativeText: "James Chen",
             width: 150,
             height: 150,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   },
   {
     id: 3,
     attributes: {
       customerName: "Sarah Thompson",
-      review: "Amazing experience from start to finish. The service was impeccable and the food exceeded all expectations. Perfect place for special occasions or just a great meal out. Highly recommend!",
+      review:
+        "Amazing experience from start to finish. The service was impeccable and the food exceeded all expectations. Perfect place for special occasions or just a great meal out. Highly recommend!",
       rating: 5,
       title: "Happy Diner",
       isVerified: false,
@@ -69,15 +74,16 @@ const mockTestimonials: Testimonial[] = [
             alternativeText: "Sarah Thompson",
             width: 150,
             height: 150,
-          }
-        }
-      }
-    }
-  }
+          },
+        },
+      },
+    },
+  },
 ];
 
 // Use Strapi data if available, otherwise use mock data
-const testimonials = strapiTestimonials.length > 0 ? strapiTestimonials : mockTestimonials;
+const testimonials =
+  strapiTestimonials.length > 0 ? strapiTestimonials : mockTestimonials;
 ---
 
 <section class="py-20 bg-cream-50">
@@ -90,9 +96,11 @@ const testimonials = strapiTestimonials.length > 0 ? strapiTestimonials : mockTe
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {testimonials.map((testimonial) => (
-        <TestimonialComponent item={testimonial} />
-      ))}
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialComponent item={testimonial} />
+        ))
+      }
     </div>
   </div>
 </section>

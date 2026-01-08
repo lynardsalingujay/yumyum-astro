@@ -128,7 +128,14 @@ export async function fetchStrapi<T = MenuItem>(endpoint: string): Promise<Strap
   if (!STRAPI_URL) {
     return { data: [], meta: {} };
   }
-  const url = `${STRAPI_URL}/api/${endpoint}?populate[image][fields][0]=url&populate[image][fields][1]=alternativeText&populate[image][fields][2]=formats&populate[cuisine][fields][0]=name`;
+  
+  // Check if endpoint already has query parameters
+  const separator = endpoint.includes('?') ? '&' : '?';
+  const defaultPopulate = endpoint.includes('populate') 
+    ? '' 
+    : `${separator}populate[image][fields][0]=url&populate[image][fields][1]=alternativeText&populate[image][fields][2]=formats&populate[cuisine][fields][0]=name`;
+  
+  const url = `${STRAPI_URL}/api/${endpoint}${defaultPopulate}`;
   
   try {
     const headers: HeadersInit = {
