@@ -207,3 +207,4 @@ Perfect for:
 ---
 
 **Ready to create your restaurant website?** Start by customizing the colors in `tailwind.config.mjs` and updating the content in the page files!
+# yumyum-astro
