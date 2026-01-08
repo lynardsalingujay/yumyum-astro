@@ -4,36 +4,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary color palette - Customize these for your restaurant brand
-        // Default: Neutral slate/blue - works for most restaurants
-        // Example alternatives: 
-        //   - Warm restaurant: Replace with orange/amber tones
-        //   - Upscale: Use deep purples or golds
-        //   - Fresh/healthy: Use greens
+        // YumYum Brand Colors - Warm coral/red theme
         primary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',  // Main primary color
-          600: '#475569',  // Buttons, CTAs
-          700: '#334155',  // Hover states
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',  // Main coral/red
+          600: '#dc2626',  // Buttons, CTAs
+          700: '#b91c1c',  // Hover states
+          800: '#991b1b',
+          900: '#7f1d1d',
         },
-        // Secondary/Accent color - Use for highlights and special elements
+        // Accent color - Golden yellow/orange for highlights
         accent: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',  // Main accent color
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',  // Main golden yellow
+          600: '#d97706',  // Used for CTAs
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+        },
+        // Neutral warm tones for backgrounds
+        cream: {
+          50: '#fefdfb',
+          100: '#fef7ed',
+          200: '#fde8cc',
+          300: '#fbd9ab',
         },
       },
     },
