@@ -124,57 +124,76 @@ const heroData = homepage?.data?.attributes || null;
     </section>
 
     <!-- Image Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
-      <button 
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4"
+    >
+      <button
         onclick="closeImageModal()"
         class="absolute top-4 right-4 text-white hover:text-accent-300 transition-colors z-10"
         aria-label="Close modal"
       >
-        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <svg
+          class="w-10 h-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
       <div class="max-w-5xl max-h-[90vh] w-full flex flex-col items-center">
-        <img id="modalImage" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+        <img
+          id="modalImage"
+          src=""
+          alt=""
+          class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+        />
         <p id="modalCaption" class="text-white text-xl font-semibold mt-4"></p>
       </div>
     </div>
 
     <script is:inline>
       function openImageModal(imageUrl, itemName) {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalCaption = document.getElementById('modalCaption');
-        
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalCaption = document.getElementById("modalCaption");
+
         if (modal && modalImage && modalCaption) {
           modalImage.src = imageUrl;
           modalImage.alt = itemName;
           modalCaption.textContent = itemName;
-          modal.classList.remove('hidden');
-          modal.classList.add('flex');
-          document.body.style.overflow = 'hidden';
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.style.overflow = "hidden";
         }
       }
 
       function closeImageModal() {
-        const modal = document.getElementById('imageModal');
+        const modal = document.getElementById("imageModal");
         if (modal) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
-          document.body.style.overflow = '';
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          document.body.style.overflow = "";
         }
       }
 
       // Close modal when clicking outside the image
-      document.getElementById('imageModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeImageModal();
-        }
-      });
+      document
+        .getElementById("imageModal")
+        ?.addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeImageModal();
+          }
+        });
 
       // Close modal with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
           closeImageModal();
         }
       });
