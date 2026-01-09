@@ -6,18 +6,33 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const { name, description, price, isMadeToOrder, image, cuisine } =
-  item.attributes;
+const {
+  name,
+  description,
+  sizeVariant,
+  price,
+  isMadeToOrder,
+  image,
+  category,
+  cuisine,
+} = item.attributes;
 
 // Download image at build time and get local path
 const imageUrl = await downloadStrapiImage(image?.data?.attributes?.url);
-const cuisineName = cuisine?.data?.attributes?.name;
+const categoryName =
+  category?.data?.attributes?.name || cuisine?.data?.attributes?.name;
+
+// Check if item has size variants or single price
+const hasSizeVariants = sizeVariant && sizeVariant.length > 0;
+
+// Generate unique ID for this menu item
+const itemId = `menu-item-${item.id}`;
 ---
 
 <div
   class="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col border-2 border-orange-100 hover:border-accent-300"
 >
-  <div class="relative aspect-[16/11] overflow-hidden bg-gray-100">
+  <div class="relative aspect-[16/11] overflow-hidden bg-gray-100 cursor-pointer" onclick={`openImageModal('${imageUrl}', '${name.replace(/'/g, "\\'")}')`}>
     {
       imageUrl ? (
         <img
@@ -33,41 +48,66 @@ const cuisineName = cuisine?.data?.attributes?.name;
     }
 
     {
-      (isMadeToOrder || cuisineName) && (
-        <div class="absolute top-4 right-4 flex flex-col gap-2 items-end">
+      (isMadeToOrder || categoryName) && (
+        <div class="absolute top-4 right-4 flex flex-col gap-2 items-end pointer-events-none">
           {isMadeToOrder && (
             <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-accent-400 text-white shadow-lg">
               Made to Order
             </span>
           )}
-          {cuisineName && (
+          {categoryName && (
             <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-white text-primary-600 shadow-lg border border-primary-300">
-              {cuisineName}
+              {categoryName}
             </span>
           )}
         </div>
       )
     }
+    
+    <!-- Zoom icon overlay -->
+    {imageUrl && (
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center pointer-events-none">
+        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+        </svg>
+      </div>
+    )}
   </div>
 
   <div class="p-6 flex-grow flex flex-col">
-    <div class="flex justify-between items-start gap-4 mb-3">
-      <h3
-        class="text-xl font-bold text-primary-700 leading-tight m-0 group-hover:text-accent-600 transition-colors"
-      >
-        {name}
-      </h3>
-      <span class="text-accent-600 font-bold text-xl whitespace-nowrap"
-        >${price.toFixed(2)}</span
-      >
-    </div>
+    <h3
+      class="text-xl font-bold text-primary-700 leading-tight mb-3 group-hover:text-accent-600 transition-colors"
+    >
+      {name}
+    </h3>
 
     {
       description && (
-        <p class="text-gray-600 text-sm leading-relaxed m-0 line-clamp-3">
+        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
           {description}
         </p>
       )
+    }
+
+    {
+      hasSizeVariants ? (
+        <div class="mt-auto space-y-2">
+          {sizeVariant!.map((variant) => (
+            <div class="flex justify-between items-center">
+              <span class="text-gray-700 font-medium">{variant.size}</span>
+              <span class="text-accent-600 font-bold text-lg">
+                ${variant.price.toFixed(2)}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : price !== undefined ? (
+        <div class="mt-auto">
+          <span class="text-accent-600 font-bold text-xl">
+            ${price.toFixed(2)}
+          </span>
+        </div>
+      ) : null
     }
   </div>
 </div>

@@ -29,13 +29,16 @@ const secondaryCtaLink = heroData?.secondaryCtaLink || "#contact";
 // Download image at build time and get local path
 const imageUrl = await downloadStrapiImage(heroImage?.data?.attributes?.url);
 const imageAlt = heroImage?.data?.attributes?.alternativeText || heroTitle;
+
+// Use Strapi image if available, otherwise fallback to local background.jpg
+const backgroundImageUrl = imageUrl || "/background.jpg";
 ---
 
 <section class="relative py-20 sm:py-32 min-h-screen flex items-center">
   <!-- Background Image with Opacity -->
   <div
     class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/background.jpg'); opacity: 0.4;"
+    style={`background-image: url('${backgroundImageUrl}'); opacity: 0.4;`}
   >
   </div>
 

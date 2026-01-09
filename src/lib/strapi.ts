@@ -38,24 +38,32 @@ export interface StrapiImage {
   data: StrapiImageData | null;
 }
 
-export interface CuisineData {
+export interface CategoryData {
   id: number;
   attributes: {
     name: string;
   };
 }
 
-export interface CuisineRelation {
-  data: CuisineData | null;
+export interface CategoryRelation {
+  data: CategoryData | null;
+}
+
+export interface SizeVariant {
+  id: number;
+  size: string;
+  price: number;
 }
 
 export interface MenuItemAttributes {
   name: string;
-  description: string;
-  price: number;
+  description?: string;
+  sizeVariant?: SizeVariant[];
+  price?: number;
   isMadeToOrder: boolean;
   image: StrapiImage;
-  cuisine: CuisineRelation;
+  category?: CategoryRelation;
+  cuisine?: CategoryRelation; // Backward compatibility
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
@@ -109,8 +117,7 @@ export interface HeroSection {
   secondaryCtaLink?: string;
 }
 
-export interface HomepageAttributes {
-  heroSection: HeroSection;
+export interface HomepageAttributes extends HeroSection {
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
@@ -133,7 +140,7 @@ export async function fetchStrapi<T = MenuItem>(endpoint: string): Promise<Strap
   const separator = endpoint.includes('?') ? '&' : '?';
   const defaultPopulate = endpoint.includes('populate') 
     ? '' 
-    : `${separator}populate[image][fields][0]=url&populate[image][fields][1]=alternativeText&populate[image][fields][2]=formats&populate[cuisine][fields][0]=name`;
+    : `${separator}populate[image][fields][0]=url&populate[image][fields][1]=alternativeText&populate[image][fields][2]=formats&populate[cuisine][fields][0]=name&populate[category][fields][0]=name&populate=sizeVariant`;
   
   const url = `${STRAPI_URL}/api/${endpoint}${defaultPopulate}`;
   
@@ -183,7 +190,7 @@ export async function fetchStrapiSingle(endpoint: string): Promise<HomepageRespo
   if (!STRAPI_URL) {
     return { data: null, meta: {} };
   }
-  const url = `${STRAPI_URL}/api/${endpoint}?populate[heroSection][populate]=heroImage`;
+  const url = `${STRAPI_URL}/api/${endpoint}?populate=heroImage`;
   
   try {
     const headers: HeadersInit = {

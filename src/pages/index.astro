@@ -18,8 +18,7 @@ import TestimonialSection from "../components/TestimonialSection.astro";
 
 const menu = await fetchStrapi<MenuItem>("menu-items");
 const homepage = await fetchStrapiSingle("homepage");
-const heroSection = homepage?.data?.attributes?.heroSection;
-const heroData = Array.isArray(heroSection) ? heroSection[0] : heroSection;
+const heroData = homepage?.data?.attributes || null;
 ---
 
 <!doctype html>
@@ -62,44 +61,6 @@ const heroData = Array.isArray(heroSection) ? heroSection[0] : heroSection;
 
     <!-- Hero Section -->
     <Hero heroData={heroData} />
-
-    <!-- Why Choose Us Section -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center mb-12 text-primary-600">
-          Why Choose Us?
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center p-6">
-            <div class="text-5xl mb-4">🍽️</div>
-            <h3 class="text-xl font-semibold mb-2 text-primary-600">
-              Quality Ingredients
-            </h3>
-            <p class="text-gray-600">
-              We source the finest ingredients for every dish we create.
-            </p>
-          </div>
-          <div class="text-center p-6">
-            <div class="text-5xl mb-4">👨‍🍳</div>
-            <h3 class="text-xl font-semibold mb-2 text-primary-600">
-              Expert Chefs
-            </h3>
-            <p class="text-gray-600">
-              Our experienced chefs bring passion and skill to every plate.
-            </p>
-          </div>
-          <div class="text-center p-6">
-            <div class="text-5xl mb-4">⭐</div>
-            <h3 class="text-xl font-semibold mb-2 text-primary-600">
-              Exceptional Service
-            </h3>
-            <p class="text-gray-600">
-              We're committed to making your dining experience memorable.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Testimonial Section -->
     <TestimonialSection />
@@ -161,6 +122,63 @@ const heroData = Array.isArray(heroSection) ? heroSection[0] : heroSection;
         }
       </div>
     </section>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+      <button 
+        onclick="closeImageModal()"
+        class="absolute top-4 right-4 text-white hover:text-accent-300 transition-colors z-10"
+        aria-label="Close modal"
+      >
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="max-w-5xl max-h-[90vh] w-full flex flex-col items-center">
+        <img id="modalImage" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+        <p id="modalCaption" class="text-white text-xl font-semibold mt-4"></p>
+      </div>
+    </div>
+
+    <script is:inline>
+      function openImageModal(imageUrl, itemName) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        if (modal && modalImage && modalCaption) {
+          modalImage.src = imageUrl;
+          modalImage.alt = itemName;
+          modalCaption.textContent = itemName;
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Close modal when clicking outside the image
+      document.getElementById('imageModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeImageModal();
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeImageModal();
+        }
+      });
+    </script>
 
     <Footer />
   </body>
