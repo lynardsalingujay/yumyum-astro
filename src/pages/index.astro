@@ -4,54 +4,54 @@ import {
   fetchStrapiSingle,
   type MenuItem,
   type StrapiResponse,
-} from "../lib/strapi";
-import SimpleMenuCard from "../components/SimpleMenuCard.astro";
-import Hero from "../components/Hero.astro";
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
-import TestimonialSection from "../components/TestimonialSection.astro";
+} from '../lib/strapi'
+import SimpleMenuCard from '../components/SimpleMenuCard.astro'
+import Hero from '../components/Hero.astro'
+import Navigation from '../components/Navigation.astro'
+import Footer from '../components/Footer.astro'
+import TestimonialSection from '../components/TestimonialSection.astro'
 
 // ⚡ BUILD-TIME DATA FETCHING
 // All Strapi API calls execute during build (astro build), NOT at runtime.
 // If Strapi is unavailable, the build will fail loudly with clear error messages.
 // The final output is pure static HTML with embedded content.
 
-const menu = await fetchStrapi<MenuItem>("menu-items");
-const homepage = await fetchStrapiSingle("homepage");
-const heroData = homepage?.data?.attributes || null;
+const menu = await fetchStrapi<MenuItem>('menu-items')
+const homepage = await fetchStrapiSingle('homepage')
+const heroData = homepage?.data?.attributes || null
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Delicious food made fresh daily" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset='UTF-8' />
+    <meta name='description' content='Delicious food made fresh daily' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hanken+Grotesk:wght@500;600;700&display=swap'
+      rel='stylesheet'
     />
     <title>YumYum - Delicious Food, Made Fresh Daily</title>
   </head>
-  <body class="font-sans bg-cream-50" style="font-family: Poppins, sans-serif;">
-    <Navigation currentPage="home" />
+  <body class='font-sans bg-cream-50' style='font-family: Poppins, sans-serif;'>
+    <Navigation currentPage='home' />
 
     <!-- Development Notice Banner -->
     {
       !import.meta.env.PUBLIC_STRAPI_URL && (
-        <div class="bg-gradient-to-r from-accent-500 to-accent-600 text-white py-3 px-4">
-          <div class="max-w-7xl mx-auto text-center">
-            <p class="text-sm md:text-base">
+        <div class='bg-gradient-to-r from-accent-500 to-accent-600 text-white py-3 px-4'>
+          <div class='max-w-7xl mx-auto text-center'>
+            <p class='text-sm md:text-base'>
               🚀 <strong>Astro Restaurant Template - Starter Preview</strong> |
-              Configure{" "}
-              <code class="bg-white/20 px-2 py-0.5 rounded">
+              Configure{' '}
+              <code class='bg-white/20 px-2 py-0.5 rounded'>
                 PUBLIC_STRAPI_URL
-              </code>{" "}
-              in your <code class="bg-white/20 px-2 py-0.5 rounded">.env</code>{" "}
+              </code>{' '}
+              in your <code class='bg-white/20 px-2 py-0.5 rounded'>.env</code>{' '}
               file to load dynamic content from Strapi CMS
             </p>
           </div>
@@ -66,52 +66,52 @@ const heroData = homepage?.data?.attributes || null;
     <TestimonialSection />
 
     <!-- Menu Preview Section -->
-    <section id="menu" class="py-20 bg-cream-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center mb-4 text-primary-600">
+    <section id='menu' class='py-20 bg-cream-50'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <h2 class='text-4xl font-bold text-center mb-4 text-primary-600'>
           Our Menu
         </h2>
-        <p class="text-center text-gray-600 mb-12 text-lg">
+        <p class='text-center text-gray-600 mb-12 text-lg'>
           Discover our delicious selection of signature dishes
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {menu?.data?.map((item) => <SimpleMenuCard item={item} />)}
         </div>
 
         {
           !menu?.data?.length && (
-            <div class="text-center">
-              <div class="bg-white rounded-lg shadow-md p-12 max-w-2xl mx-auto border-2 border-orange-100">
-                <div class="text-6xl mb-4">🍽️</div>
-                <h3 class="text-2xl font-bold text-primary-600 mb-3">
+            <div class='text-center'>
+              <div class='bg-white rounded-lg shadow-md p-12 max-w-2xl mx-auto border-2 border-orange-100'>
+                <div class='text-6xl mb-4'>🍽️</div>
+                <h3 class='text-2xl font-bold text-primary-600 mb-3'>
                   Placeholder Menu Preview
                 </h3>
-                <p class="text-gray-600 mb-4">
+                <p class='text-gray-600 mb-4'>
                   This is the starter template for your Astro restaurant
                   website. Menu items will appear here once you connect to
                   Strapi CMS.
                 </p>
-                <div class="bg-cream-50 rounded-lg p-4 text-left text-sm">
-                  <p class="font-semibold text-primary-600 mb-2">
+                <div class='bg-cream-50 rounded-lg p-4 text-left text-sm'>
+                  <p class='font-semibold text-primary-600 mb-2'>
                     To add menu items:
                   </p>
-                  <ol class="list-decimal list-inside space-y-1 text-gray-600">
+                  <ol class='list-decimal list-inside space-y-1 text-gray-600'>
                     <li>Set up your Strapi CMS instance</li>
                     <li>Create the Menu Item content type</li>
                     <li>Add your menu items with images and descriptions</li>
                     <li>
-                      Configure{" "}
-                      <code class="bg-white px-2 py-0.5 rounded">
+                      Configure{' '}
+                      <code class='bg-white px-2 py-0.5 rounded'>
                         PUBLIC_STRAPI_URL
-                      </code>{" "}
+                      </code>{' '}
                       in .env
                     </li>
                     <li>
-                      Run{" "}
-                      <code class="bg-white px-2 py-0.5 rounded">
+                      Run{' '}
+                      <code class='bg-white px-2 py-0.5 rounded'>
                         npm run build
-                      </code>{" "}
+                      </code>{' '}
                       to generate your site
                     </li>
                   </ol>
@@ -125,78 +125,78 @@ const heroData = homepage?.data?.attributes || null;
 
     <!-- Image Modal -->
     <div
-      id="imageModal"
-      class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4"
+      id='imageModal'
+      class='fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4'
     >
       <button
-        onclick="closeImageModal()"
-        class="absolute top-4 right-4 text-white hover:text-accent-300 transition-colors z-10"
-        aria-label="Close modal"
+        onclick='closeImageModal()'
+        class='absolute top-4 right-4 text-white hover:text-accent-300 transition-colors z-10'
+        aria-label='Close modal'
       >
         <svg
-          class="w-10 h-10"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          class='w-10 h-10'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M6 18L18 6M6 6l12 12'></path>
         </svg>
       </button>
-      <div class="max-w-5xl max-h-[90vh] w-full flex flex-col items-center">
+      <div class='max-w-5xl max-h-[90vh] w-full flex flex-col items-center'>
         <img
-          id="modalImage"
-          src=""
-          alt=""
-          class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+          id='modalImage'
+          src=''
+          alt=''
+          class='max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl'
         />
-        <p id="modalCaption" class="text-white text-xl font-semibold mt-4"></p>
+        <p id='modalCaption' class='text-white text-xl font-semibold mt-4'></p>
       </div>
     </div>
 
     <script is:inline>
       function openImageModal(imageUrl, itemName) {
-        const modal = document.getElementById("imageModal");
-        const modalImage = document.getElementById("modalImage");
-        const modalCaption = document.getElementById("modalCaption");
+        const modal = document.getElementById('imageModal')
+        const modalImage = document.getElementById('modalImage')
+        const modalCaption = document.getElementById('modalCaption')
 
         if (modal && modalImage && modalCaption) {
-          modalImage.src = imageUrl;
-          modalImage.alt = itemName;
-          modalCaption.textContent = itemName;
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
-          document.body.style.overflow = "hidden";
+          modalImage.src = imageUrl
+          modalImage.alt = itemName
+          modalCaption.textContent = itemName
+          modal.classList.remove('hidden')
+          modal.classList.add('flex')
+          document.body.style.overflow = 'hidden'
         }
       }
 
       function closeImageModal() {
-        const modal = document.getElementById("imageModal");
+        const modal = document.getElementById('imageModal')
         if (modal) {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-          document.body.style.overflow = "";
+          modal.classList.add('hidden')
+          modal.classList.remove('flex')
+          document.body.style.overflow = ''
         }
       }
 
       // Close modal when clicking outside the image
       document
-        .getElementById("imageModal")
-        ?.addEventListener("click", function (e) {
+        .getElementById('imageModal')
+        ?.addEventListener('click', function (e) {
           if (e.target === this) {
-            closeImageModal();
+            closeImageModal()
           }
-        });
+        })
 
       // Close modal with Escape key
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          closeImageModal();
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeImageModal()
         }
-      });
+      })
     </script>
 
     <Footer />

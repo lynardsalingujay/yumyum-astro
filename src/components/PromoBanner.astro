@@ -1,0 +1,30 @@
+---
+// You can make these props to easily update the content
+interface Props {
+  deliveryTime?: string
+  location?: string
+  shippingThreshold?: number
+}
+
+const {
+  deliveryTime = '10PM for next-day delivery',
+  location = 'Christchurch',
+  shippingThreshold = 85,
+} = Astro.props
+---
+
+<div class='bg-gray-900 text-white py-2 px-4 text-center text-sm'>
+  <p class='flex flex-wrap items-center justify-center gap-2'>
+    <span>
+      Order by <strong class='font-semibold'>{deliveryTime}</strong> in {
+        location
+      }
+    </span>
+    <span class='hidden sm:inline'>•</span>
+    <span>
+      <strong class='font-semibold'>Free shipping</strong> over ${
+        shippingThreshold
+      }
+    </span>
+  </p>
+</div>

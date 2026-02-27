@@ -1,0 +1,43 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="600" fill="#FFF9F0"/>
+  
+  <!-- Cake Base (Bottom Layer) -->
+  <ellipse cx="300" cy="480" rx="180" ry="30" fill="#E8D4B8"/>
+  <rect x="120" y="450" width="360" height="30" fill="#F5E6D3"/>
+  
+  <!-- Cake Middle Layer -->
+  <ellipse cx="300" cy="450" rx="180" ry="30" fill="#FFE5B4"/>
+  <rect x="120" y="380" width="360" height="70" fill="#FFD89B"/>
+  
+  <!-- Cream Layer -->
+  <ellipse cx="300" cy="380" rx="180" ry="25" fill="#FFFAF0"/>
+  <rect x="120" y="330" width="360" height="50" fill="#FFF8E7"/>
+  
+  <!-- Top Cake Layer -->
+  <ellipse cx="300" cy="330" rx="180" ry="30" fill="#FFE5B4"/>
+  <rect x="120" y="260" width="360" height="70" fill="#FFD89B"/>
+  
+  <!-- Top Cream -->
+  <ellipse cx="300" cy="260" rx="180" ry="25" fill="#FFFAF0"/>
+  
+  <!-- Decorative Fruits (Mango) -->
+  <ellipse cx="250" cy="240" rx="25" ry="20" fill="#FFB347"/>
+  <ellipse cx="300" cy="235" rx="30" ry="25" fill="#FFA500"/>
+  <ellipse cx="350" cy="240" rx="25" ry="20" fill="#FFB347"/>
+  
+  <!-- Edible Flowers -->
+  <circle cx="200" cy="250" r="8" fill="#DDA0DD"/>
+  <circle cx="400" cy="250" r="8" fill="#DDA0DD"/>
+  <circle cx="220" cy="270" r="6" fill="#FFB6C1"/>
+  <circle cx="380" cy="270" r="6" fill="#FFB6C1"/>
+  
+  <!-- Drip Effect -->
+  <path d="M 180 260 Q 180 280 175 300" stroke="#FFF8E7" stroke-width="8" fill="none"/>
+  <path d="M 250 260 Q 250 285 245 305" stroke="#FFF8E7" stroke-width="8" fill="none"/>
+  <path d="M 350 260 Q 350 285 345 305" stroke="#FFF8E7" stroke-width="8" fill="none"/>
+  <path d="M 420 260 Q 420 280 415 300" stroke="#FFF8E7" stroke-width="8" fill="none"/>
+  
+  <!-- Text -->
+  <text x="300" y="550" font-family="Arial, sans-serif" font-size="24" fill="#8B6F47" text-anchor="middle" font-weight="bold">Mango Cream Cake</text>
+</svg>

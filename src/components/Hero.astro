@@ -1,96 +1,395 @@
 ---
-import { downloadStrapiImage, type HeroSection } from "../lib/strapi";
+import { downloadStrapiImage, type HeroSection } from '../lib/strapi'
 
 interface Props {
-  heroData: HeroSection | null;
+  heroData: HeroSection | null
 }
 
-const { heroData } = Astro.props;
+const { heroData } = Astro.props
 
-// Debug: Check what data we received
-if (import.meta.env.DEV) {
-  console.log(
-    "Hero component received heroData:",
-    JSON.stringify(heroData, null, 2)
-  );
-}
-
-// Use Strapi data if available, otherwise use fallback defaults
-const heroTitle = heroData?.heroTitle || "Delicious Food, Made Fresh Daily";
-const heroSubtitle =
-  heroData?.heroSubtitle ||
-  "Experience the finest culinary creations. We bring authentic flavors and quality ingredients to every dish we serve.";
-const heroImage = heroData?.heroImage;
-const primaryCtaText = heroData?.primaryCtaText || "View Menu";
-const primaryCtaLink = heroData?.primaryCtaLink || "#menu";
-const secondaryCtaText = heroData?.secondaryCtaText || "Order Now";
-const secondaryCtaLink = heroData?.secondaryCtaLink || "#contact";
-
-// Download image at build time and get local path
-const imageUrl = await downloadStrapiImage(heroImage?.data?.attributes?.url);
-const imageAlt = heroImage?.data?.attributes?.alternativeText || heroTitle;
-
-// Use Strapi image if available, otherwise fallback to local background.jpg
-const backgroundImageUrl = imageUrl || "/background.jpg";
+// High-quality cake images for cascading card carousel
+const cakeImages = [
+  '/cake-strawberry-hq.svg',
+  '/cake-matcha-hq.svg',
+  '/cake-chocolate-hq.svg',
+]
 ---
 
-<section class="relative py-20 sm:py-32 min-h-screen flex items-center">
-  <!-- Background Image with Opacity -->
+<section
+  class='relative w-full overflow-hidden'
+  style='background: linear-gradient(135deg, #FAF6F1 0%, #F5EFE6 100%);'
+>
+  <!-- Split Layout Container -->
   <div
-    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style={`background-image: url('${backgroundImageUrl}'); opacity: 0.4;`}
+    class='grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)] items-center'
   >
-  </div>
-
-  <!-- Content Overlay -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <div class="text-center max-w-4xl mx-auto">
+    <!-- Left Side - Text Content -->
+    <div
+      class='px-8 sm:px-12 lg:px-16 xl:px-24 py-16 lg:py-0 order-2 lg:order-1'
+      style="font-family: 'Hanken Grotesk', sans-serif;"
+    >
       <h1
-        class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight"
+        class='text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-8 leading-tight'
+        style='font-weight: 500;'
       >
-        <span class="text-primary-600">{heroTitle}</span>
+        <span class='block mb-2' style='color: #B8860B; letter-spacing: 0.02em;'
+          >SIGNATURE YUMYUM</span
+        >
+        <span class='text-gray-900 block' style='letter-spacing: 0.01em;'
+          >CLOUD-SOFT CAKES</span
+        >
       </h1>
 
-      <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">
-        {heroSubtitle}
-      </p>
+      <a
+        href='/menu'
+        class='inline-block text-white px-12 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:scale-105'
+        style='background-color: #B8860B; font-weight: 500; letter-spacing: 0.08em;'
+      >
+        BROWSE ALL
+      </a>
+    </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <!-- Right Side - Cascading Card Carousel -->
+    <div
+      class='relative h-[500px] lg:h-[calc(100vh-80px)] flex items-center justify-center order-1 lg:order-2 px-8 lg:px-16'
+    >
+      <div
+        id='card-carousel'
+        class='relative w-full max-w-lg h-[500px] lg:h-[600px]'
+      >
         {
-          primaryCtaText && primaryCtaLink && (
-            <a
-              href={primaryCtaLink}
-              class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2 justify-center"
+          cakeImages.map((image, index) => (
+            <div
+              class={`cake-card absolute transition-all duration-1000 ease-in-out ${index === 0 ? 'active' : ''}`}
+              data-card={index}
+              style={`
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+                padding: 20px;
+                width: 100%;
+                max-width: 450px;
+                height: 500px;
+              `}
             >
-              {primaryCtaText}
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <div
+                class='w-full h-full rounded-xl overflow-hidden'
+                style='background: #FAFAFA;'
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
+                <img
+                  src={image}
+                  alt={`Cake ${index + 1}`}
+                  class='w-full h-full object-cover'
+                  style='object-fit: cover;'
                 />
-              </svg>
-            </a>
-          )
+              </div>
+            </div>
+          ))
         }
+      </div>
 
+      <!-- Card Carousel Dots -->
+      <div
+        class='absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3'
+      >
         {
-          secondaryCtaText && secondaryCtaLink && (
-            <a
-              href={secondaryCtaLink}
-              class="bg-white hover:bg-cream-50 text-primary-600 px-8 py-4 rounded-full font-semibold text-lg border-2 border-primary-500 transition-all hover:border-primary-600 inline-block"
-            >
-              {secondaryCtaText}
-            </a>
-          )
+          cakeImages.map((_, index) => (
+            <button
+              class={`card-dot w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-gray-900 w-8' : 'bg-gray-400'}`}
+              data-card-to={index}
+              aria-label={`View cake ${index + 1}`}
+            />
+          ))
         }
       </div>
     </div>
   </div>
 </section>
+
+<!-- Scrolling Banner Section -->
+<div
+  class='border-y border-gray-200 py-4 overflow-hidden'
+  style='background-color: #EBD7C8;'
+>
+  <div class='scroll-container'>
+    <div class='scroll-content'>
+      <!-- Repeat content for seamless scrolling -->
+      <div class='flex items-center gap-8'>
+        <!-- Cake Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.25 2.25 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'
+            >Beautifully crafted cakes</span
+          >
+        </div>
+
+        <!-- Sparkles Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'>Impress on any occasion</span>
+        </div>
+
+        <!-- Delivery Truck Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'
+            >Same-day pickup or next-day delivery</span
+          >
+        </div>
+      </div>
+
+      <!-- Duplicate for seamless loop -->
+      <div class='flex items-center gap-8'>
+        <!-- Cake Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.25 2.25 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'
+            >Beautifully crafted cakes</span
+          >
+        </div>
+
+        <!-- Sparkles Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'>Impress on any occasion</span>
+        </div>
+
+        <!-- Delivery Truck Icon + Text -->
+        <div class='flex items-center gap-3 whitespace-nowrap'>
+          <svg
+            class='w-6 h-6 text-gray-600'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
+            ></path>
+          </svg>
+          <span class='text-gray-700 font-medium'
+            >Same-day pickup or next-day delivery</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scroll-container {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .scroll-content {
+    display: flex;
+    gap: 2rem;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause on hover */
+  .scroll-container:hover .scroll-content {
+    animation-play-state: paused;
+  }
+
+  /* Cascading card animation styles */
+  .cake-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+  }
+
+  .cake-card.active {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  .cake-card:not(.active):nth-child(1),
+  .cake-card:not(.active):nth-child(2),
+  .cake-card:not(.active):nth-child(3) {
+    opacity: 0.7;
+  }
+
+  /* Add subtle bounce animation on load */
+  @keyframes cardFloat {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg) translateY(0);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(0deg) translateY(-10px);
+    }
+  }
+
+  .cake-card.active {
+    animation: cardFloat 4s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // Cascading card carousel with rotation effect
+  let currentCard = 0
+  const cards = document.querySelectorAll('.cake-card')
+  const cardDots = document.querySelectorAll('.card-dot')
+  const totalCards = cards.length
+  let autoRotateInterval: number
+
+  // Position cards in stacked/cascading layout
+  function updateCardPositions(activeIndex: number) {
+    cards.forEach((card, index) => {
+      const htmlCard = card as HTMLElement
+
+      // Remove active class from all
+      card.classList.remove('active')
+
+      if (index === activeIndex) {
+        // Active card - front and center
+        card.classList.add('active')
+        htmlCard.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)'
+        htmlCard.style.zIndex = '3'
+        htmlCard.style.opacity = '1'
+      } else if (index === (activeIndex + 1) % totalCards) {
+        // Next card - slightly behind and rotated
+        htmlCard.style.transform =
+          'translate(-45%, -48%) rotate(8deg) scale(0.92)'
+        htmlCard.style.zIndex = '2'
+        htmlCard.style.opacity = '0.6'
+      } else if (index === (activeIndex + 2) % totalCards) {
+        // Third card - further back
+        htmlCard.style.transform =
+          'translate(-40%, -46%) rotate(15deg) scale(0.84)'
+        htmlCard.style.zIndex = '1'
+        htmlCard.style.opacity = '0.3'
+      } else {
+        // Hidden cards
+        htmlCard.style.transform =
+          'translate(-50%, -50%) rotate(0deg) scale(0.8)'
+        htmlCard.style.zIndex = '0'
+        htmlCard.style.opacity = '0'
+      }
+    })
+
+    // Update dots
+    cardDots.forEach((dot, index) => {
+      if (index === activeIndex) {
+        dot.classList.remove('bg-gray-400')
+        dot.classList.add('bg-gray-900', 'w-8')
+      } else {
+        dot.classList.remove('bg-gray-900', 'w-8')
+        dot.classList.add('bg-gray-400')
+      }
+    })
+
+    currentCard = activeIndex
+  }
+
+  function nextCard() {
+    currentCard = (currentCard + 1) % totalCards
+    updateCardPositions(currentCard)
+  }
+
+  function startAutoRotate() {
+    autoRotateInterval = window.setInterval(nextCard, 3000) // 3 seconds
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval)
+    }
+  }
+
+  // Dot click handlers
+  cardDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      stopAutoRotate()
+      updateCardPositions(index)
+      startAutoRotate()
+    })
+  })
+
+  // Initialize positions
+  updateCardPositions(0)
+
+  // Start auto-rotation when page loads
+  startAutoRotate()
+
+  // Pause on hover
+  const carousel = document.getElementById('card-carousel')
+  carousel?.addEventListener('mouseenter', stopAutoRotate)
+  carousel?.addEventListener('mouseleave', startAutoRotate)
+</script>

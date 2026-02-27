@@ -1,0 +1,124 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="creamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFCF7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFF5E6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBD0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFDBA4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="strawberryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B8A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4D6D;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="800" fill="#FFF9F5"/>
+  
+  <!-- Bottom cake layer shadow -->
+  <ellipse cx="400" cy="620" rx="220" ry="35" fill="#000" opacity="0.08"/>
+  
+  <!-- Bottom cake layer -->
+  <ellipse cx="400" cy="610" rx="220" ry="35" fill="url(#cakeGradient)"/>
+  <rect x="180" y="540" width="440" height="70" fill="#FFD89B"/>
+  <ellipse cx="400" cy="540" rx="220" ry="35" fill="url(#cakeGradient)"/>
+  
+  <!-- Cream layer 1 -->
+  <rect x="180" y="510" width="440" height="30" fill="url(#creamGradient)"/>
+  <ellipse cx="400" cy="510" rx="220" ry="35" fill="#FFFCF7"/>
+  
+  <!-- Middle cake layer -->
+  <rect x="180" cy="440" width="440" height="70" fill="#FFD89B"/>
+  <ellipse cx="400" cy="440" rx="220" ry="35" fill="url(#cakeGradient)"/>
+  
+  <!-- Cream layer 2 -->
+  <rect x="180" y="410" width="440" height="30" fill="url(#creamGradient)"/>
+  <ellipse cx="400" cy="410" rx="220" ry="35" fill="#FFFCF7"/>
+  
+  <!-- Top cake layer -->
+  <rect x="180" y="340" width="440" height="70" fill="#FFD89B"/>
+  <ellipse cx="400" cy="340" rx="220" ry="35" fill="url(#cakeGradient)"/>
+  
+  <!-- Top cream layer -->
+  <rect x="180" y="310" width="440" height="30" fill="url(#creamGradient)"/>
+  <ellipse cx="400" cy="310" rx="220" ry="35" fill="#FFFCF7"/>
+  
+  <!-- Detailed strawberry decorations on top -->
+  <g filter="url(#shadow)">
+    <!-- Strawberry 1 -->
+    <ellipse cx="300" cy="290" rx="28" ry="35" fill="url(#strawberryGradient)"/>
+    <path d="M 300 265 L 290 255 L 295 255 L 300 250 L 305 255 L 310 255 Z" fill="#4A7C4E"/>
+    <circle cx="295" cy="285" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="305" cy="290" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="298" cy="295" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="302" cy="300" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    
+    <!-- Strawberry 2 -->
+    <ellipse cx="380" cy="285" rx="32" ry="38" fill="url(#strawberryGradient)"/>
+    <path d="M 380 255 L 370 245 L 375 245 L 380 240 L 385 245 L 390 245 Z" fill="#4A7C4E"/>
+    <circle cx="375" cy="280" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="385" cy="285" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="378" cy="290" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="382" cy="295" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="380" cy="302" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    
+    <!-- Strawberry 3 -->
+    <ellipse cx="420" cy="290" rx="28" ry="35" fill="url(#strawberryGradient)"/>
+    <path d="M 420 265 L 410 255 L 415 255 L 420 250 L 425 255 L 430 255 Z" fill="#4A7C4E"/>
+    <circle cx="415" cy="285" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="425" cy="290" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="418" cy="295" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="422" cy="300" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    
+    <!-- Strawberry 4 -->
+    <ellipse cx="500" cy="288" rx="30" ry="36" fill="url(#strawberryGradient)"/>
+    <path d="M 500 260 L 490 250 L 495 250 L 500 245 L 505 250 L 510 250 Z" fill="#4A7C4E"/>
+    <circle cx="495" cy="283" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="505" cy="288" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="498" cy="293" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+    <circle cx="502" cy="298" r="2.5" fill="#FFE5B4" opacity="0.8"/>
+  </g>
+  
+  <!-- Edible flowers -->
+  <g opacity="0.9">
+    <circle cx="240" cy="295" r="12" fill="#E6B8E6"/>
+    <circle cx="235" cy="290" r="8" fill="#F0D4F0"/>
+    <circle cx="245" cy="290" r="8" fill="#F0D4F0"/>
+    <circle cx="240" cy="300" r="8" fill="#F0D4F0"/>
+    <circle cx="240" cy="285" r="8" fill="#F0D4F0"/>
+    <circle cx="240" cy="295" r="5" fill="#FFD700"/>
+    
+    <circle cx="560" cy="298" r="12" fill="#FFE4E1"/>
+    <circle cx="555" cy="293" r="8" fill="#FFF0F0"/>
+    <circle cx="565" cy="293" r="8" fill="#FFF0F0"/>
+    <circle cx="560" cy="303" r="8" fill="#FFF0F0"/>
+    <circle cx="560" cy="288" r="8" fill="#FFF0F0"/>
+    <circle cx="560" cy="298" r="5" fill="#FFD700"/>
+  </g>
+  
+  <!-- Cream drips -->
+  <path d="M 220 310 Q 220 330 215 350" stroke="#FFFCF7" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 280 310 Q 280 335 275 355" stroke="#FFFCF7" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M 350 310 Q 350 340 345 360" stroke="#FFFCF7" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 450 310 Q 450 340 445 360" stroke="#FFFCF7" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 520 310 Q 520 335 515 355" stroke="#FFFCF7" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M 580 310 Q 580 330 575 350" stroke="#FFFCF7" stroke-width="12" fill="none" stroke-linecap="round"/>
+  
+  <!-- Cake texture details -->
+  <ellipse cx="400" cy="380" rx="180" ry="15" fill="#FFE5B4" opacity="0.3"/>
+  <ellipse cx="400" cy="480" rx="180" ry="15" fill="#FFE5B4" opacity="0.3"/>
+  <ellipse cx="400" cy="580" rx="180" ry="15" fill="#FFE5B4" opacity="0.3"/>
+</svg>

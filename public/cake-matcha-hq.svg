@@ -1,0 +1,133 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="matchaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A8D5A8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8BC98B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="creamWhite" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFEF9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFF8E7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="berryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C084FC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333EA;stop-opacity:1" />
+    </linearGradient>
+    <filter id="softShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="0" dy="6" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="topGlow">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="800" fill="#F5FFF5"/>
+  
+  <!-- Shadow base -->
+  <ellipse cx="400" cy="625" rx="230" ry="40" fill="#000" opacity="0.1"/>
+  
+  <!-- Bottom matcha layer -->
+  <ellipse cx="400" cy="615" rx="230" ry="38" fill="url(#matchaGradient)"/>
+  <rect x="170" y="540" width="460" height="75" fill="#8BC98B"/>
+  <ellipse cx="400" cy="540" rx="230" ry="38" fill="url(#matchaGradient)"/>
+  
+  <!-- Cream separation -->
+  <rect x="170" y="505" width="460" height="35" fill="url(#creamWhite)"/>
+  <ellipse cx="400" cy="505" rx="230" ry="38" fill="#FFFEF9"/>
+  
+  <!-- Middle matcha layer -->
+  <rect x="170" y="430" width="460" height="75" fill="#8BC98B"/>
+  <ellipse cx="400" cy="430" rx="230" ry="38" fill="url(#matchaGradient)"/>
+  
+  <!-- Cream separation 2 -->
+  <rect x="170" y="395" width="460" height="35" fill="url(#creamWhite)"/>
+  <ellipse cx="400" cy="395" rx="230" ry="38" fill="#FFFEF9"/>
+  
+  <!-- Top matcha layer -->
+  <rect x="170" y="320" width="460" height="75" fill="#8BC98B"/>
+  <ellipse cx="400" cy="320" rx="230" ry="38" fill="url(#matchaGradient)"/>
+  
+  <!-- Final cream topping -->
+  <rect x="170" y="285" width="460" height="35" fill="url(#creamWhite)"/>
+  <ellipse cx="400" cy="285" rx="230" ry="38" fill="#FFFEF9"/>
+  
+  <!-- Matcha powder dusting effect -->
+  <ellipse cx="400" cy="275" rx="200" ry="20" fill="#A8D5A8" opacity="0.4"/>
+  <ellipse cx="400" cy="270" rx="170" ry="15" fill="#98D598" opacity="0.3"/>
+  
+  <!-- Decorative berries and elements -->
+  <g filter="url(#softShadow)">
+    <!-- Raspberry cluster 1 -->
+    <circle cx="280" cy="265" r="18" fill="url(#berryGradient)"/>
+    <circle cx="290" cy="260" r="16" fill="url(#berryGradient)"/>
+    <circle cx="275" cy="255" r="15" fill="url(#berryGradient)"/>
+    <circle cx="285" cy="250" r="14" fill="#A855F7"/>
+    
+    <!-- Raspberry cluster 2 -->
+    <circle cx="400" cy="255" r="20" fill="url(#berryGradient)"/>
+    <circle cx="410" cy="250" r="18" fill="url(#berryGradient)"/>
+    <circle cx="395" cy="245" r="17" fill="url(#berryGradient)"/>
+    <circle cx="405" cy="240" r="15" fill="#A855F7"/>
+    
+    <!-- Raspberry cluster 3 -->
+    <circle cx="520" cy="265" r="18" fill="url(#berryGradient)"/>
+    <circle cx="510" cy="260" r="16" fill="url(#berryGradient)"/>
+    <circle cx="525" cy="255" r="15" fill="url(#berryGradient)"/>
+    <circle cx="515" cy="250" r="14" fill="#A855F7"/>
+    
+    <!-- Blueberries -->
+    <circle cx="340" cy="268" r="12" fill="#4F46E5"/>
+    <circle cx="350" cy="265" r="10" fill="#4F46E5"/>
+    <circle cx="460" cy="268" r="12" fill="#4F46E5"/>
+    <circle cx="450" cy="265" r="10" fill="#4F46E5"/>
+  </g>
+  
+  <!-- White chocolate shavings -->
+  <g opacity="0.9">
+    <rect x="220" y="275" width="25" height="4" fill="#FFFEF9" rx="2" transform="rotate(25 232 277)"/>
+    <rect x="320" y="280" width="20" height="3" fill="#FFF8E7" rx="1.5" transform="rotate(-15 330 281)"/>
+    <rect x="380" y="278" width="28" height="4" fill="#FFFEF9" rx="2" transform="rotate(35 394 280)"/>
+    <rect x="470" y="280" width="22" height="3" fill="#FFF8E7" rx="1.5" transform="rotate(-20 481 281)"/>
+    <rect x="550" y="275" width="24" height="4" fill="#FFFEF9" rx="2" transform="rotate(30 562 277)"/>
+  </g>
+  
+  <!-- Mint leaves -->
+  <g opacity="0.85">
+    <ellipse cx="245" cy="268" rx="12" ry="8" fill="#47A447" transform="rotate(-30 245 268)"/>
+    <path d="M 245 268 L 245 260" stroke="#2D6B2D" stroke-width="1.5"/>
+    
+    <ellipse cx="560" cy="270" rx="12" ry="8" fill="#47A447" transform="rotate(35 560 270)"/>
+    <path d="M 560 270 L 560 262" stroke="#2D6B2D" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Gold leaf accents -->
+  <g opacity="0.6">
+    <path d="M 360 275 Q 365 270 370 275 Q 365 280 360 275" fill="#FFD700"/>
+    <path d="M 440 275 Q 445 270 450 275 Q 445 280 440 275" fill="#FFD700"/>
+  </g>
+  
+  <!-- Cream drips with matcha tint -->
+  <path d="M 210 285 Q 210 310 205 335" stroke="#F0F8F0" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M 290 285 Q 290 315 285 340" stroke="#F0F8F0" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 360 285 Q 360 320 355 345" stroke="#F0F8F0" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M 440 285 Q 440 320 435 345" stroke="#F0F8F0" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M 510 285 Q 510 315 505 340" stroke="#F0F8F0" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 590 285 Q 590 310 585 335" stroke="#F0F8F0" stroke-width="14" fill="none" stroke-linecap="round"/>
+  
+  <!-- Layer highlights -->
+  <ellipse cx="400" cy="360" rx="190" ry="18" fill="#B8E6B8" opacity="0.25"/>
+  <ellipse cx="400" cy="470" rx="190" ry="18" fill="#B8E6B8" opacity="0.25"/>
+  <ellipse cx="400" cy="575" rx="190" ry="18" fill="#B8E6B8" opacity="0.25"/>
+  
+  <!-- Top glow effect -->
+  <ellipse cx="400" cy="265" rx="220" ry="30" fill="url(#topGlow)"/>
+</svg>
