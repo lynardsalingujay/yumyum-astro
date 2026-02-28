@@ -21,15 +21,15 @@ const cakeImages = [
 >
   <!-- Split Layout Container -->
   <div
-    class='grid grid-cols-1 lg:grid-cols-[40%_60%] gap-4 lg:gap-8 min-h-[calc(75vh-80px)] items-center'
+    class='grid grid-cols-1 lg:grid-cols-[40%_60%] gap-0 lg:gap-8 min-h-[calc(100vh-80px)] sm:min-h-[calc(85vh-80px)] lg:min-h-[calc(75vh-80px)] items-center'
   >
     <!-- Left Side - Text Content -->
     <div
-      class='px-8 sm:px-12 lg:px-16 lg:pr-8 py-12 lg:py-0 order-2 lg:order-1 text-left lg:text-right'
+      class='px-6 sm:px-8 md:px-12 lg:px-16 lg:pr-8 py-8 sm:py-12 lg:py-0 order-2 lg:order-1 text-center sm:text-left lg:text-right'
       style="font-family: 'Hanken Grotesk', sans-serif;"
     >
       <h1
-        class='text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-8 leading-tight'
+        class='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 leading-tight'
         style='font-weight: 500;'
       >
         <span class='block mb-2' style='color: #B8860B; letter-spacing: 0.02em;'
@@ -40,11 +40,11 @@ const cakeImages = [
         >
       </h1>
 
-      <div class='lg:flex lg:justify-end'>
+      <div class='flex justify-center sm:justify-start lg:justify-end'>
         <a
           href='/menu'
-          class='inline-block text-white px-12 py-4 rounded-full text-base transition-all shadow-lg hover:shadow-xl transform hover:scale-105'
-          style='background-color: #B8860B; font-weight: 500; letter-spacing: 0.08em;'
+          class='inline-block text-white px-8 sm:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 rounded-full text-sm sm:text-base transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 w-full sm:w-auto text-center'
+          style='background-color: #B8860B; font-weight: 500; letter-spacing: 0.08em; max-width: 280px;'
         >
           BROWSE ALL
         </a>
@@ -53,11 +53,11 @@ const cakeImages = [
 
     <!-- Right Side - Cascading Card Carousel -->
     <div
-      class='relative h-[450px] lg:h-[calc(75vh-80px)] flex items-center justify-center order-1 lg:order-2 px-8 lg:px-8 lg:pl-4'
+      class='relative h-[380px] sm:h-[420px] md:h-[480px] lg:h-[calc(75vh-80px)] flex items-center justify-center order-1 lg:order-2 px-6 sm:px-8 lg:px-8 lg:pl-4'
     >
       <div
         id='card-carousel'
-        class='relative w-full max-w-lg h-[450px] lg:h-[550px]'
+        class='relative w-full max-w-[320px] sm:max-w-md md:max-w-lg h-[350px] sm:h-[400px] md:h-[480px] lg:h-[550px]'
       >
         {
           cakeImages.map((image, index) => (
@@ -68,10 +68,11 @@ const cakeImages = [
                 background: white;
                 border-radius: 16px;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                padding: 20px;
+                padding: 16px;
                 width: 100%;
                 max-width: 450px;
-                height: 500px;
+                height: 100%;
+                max-height: 500px;
               `}
             >
               <div

@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [tailwind()],
   vite: {
     server: {
-      allowedHosts: ['localhost'],
+      allowedHosts: ['localhost', 'vilma-unreverberated-undespondently.ngrok-free.dev'],
     },
   },
 });

@@ -14,22 +14,22 @@ const isActive = (page: string) => currentPage === page
 
 <nav class='bg-white shadow-md sticky top-0 z-50'>
   <div
-    class='mx-auto'
-    style='width: 1440px; max-width: 1440px; height: 80px; padding: 16px 56px; display: flex; align-items: center;'
+    class='mx-auto px-4 sm:px-6 lg:px-14'
+    style='max-width: 1440px; min-height: 80px; display: flex; align-items: center;'
   >
-    <div class='flex justify-between items-center w-full'>
+    <div class='flex justify-between items-center w-full py-4'>
       <div class='flex items-center'>
         <a
           href='/'
           class='flex items-center hover:opacity-80 transition-opacity'
         >
-          <img src='/logo.jpg' alt='YumYum' class='h-16 w-auto' />
+          <img src='/logo.jpg' alt='YumYum' class='h-12 sm:h-14 lg:h-16 w-auto' />
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div
-        class='hidden md:flex items-center'
+        class='hidden lg:flex items-center'
         style='font-family: Poppins, sans-serif; gap: 60px;'
       >
         <a
@@ -65,7 +65,7 @@ const isActive = (page: string) => currentPage === page
       </div>
 
       <!-- Right Side Utilities -->
-      <div class='hidden md:flex items-center space-x-6'>
+      <div class='hidden lg:flex items-center space-x-6'>
         <!-- Search -->
         <div
           class='flex items-center space-x-2 px-4 py-2 rounded-md'
@@ -142,13 +142,22 @@ const isActive = (page: string) => currentPage === page
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
+      <!-- Mobile Hamburger Menu Button (Animated) -->
       <button
         id='mobile-menu-button'
-        class='md:hidden text-primary-700 text-3xl focus:outline-none focus:text-accent-600 transition-colors'
+        class='lg:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none group'
         aria-label='Toggle menu'
+        aria-expanded='false'
       >
-        ☰
+        <span
+          class='hamburger-line bg-gray-900 h-0.5 w-6 rounded transition-all duration-300 ease-in-out'
+        ></span>
+        <span
+          class='hamburger-line bg-gray-900 h-0.5 w-6 rounded transition-all duration-300 ease-in-out my-1'
+        ></span>
+        <span
+          class='hamburger-line bg-gray-900 h-0.5 w-6 rounded transition-all duration-300 ease-in-out'
+        ></span>
       </button>
     </div>
   </div>
@@ -157,7 +166,7 @@ const isActive = (page: string) => currentPage === page
 <!-- Mobile Menu Overlay -->
 <div
   id='mobile-menu-overlay'
-  class='fixed inset-0 bg-black/50 z-50 hidden'
+  class='fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] opacity-0 invisible transition-all duration-300'
   aria-hidden='true'
 >
 </div>
@@ -165,60 +174,101 @@ const isActive = (page: string) => currentPage === page
 <!-- Mobile Menu Drawer -->
 <div
   id='mobile-menu'
-  class='fixed top-0 right-0 h-full w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-[60] opacity-100'
+  class='fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-[70]'
   role='dialog'
   aria-label='Mobile navigation'
   style='background-color: #ffffff;'
 >
   <div class='flex flex-col h-full'>
     <!-- Close Button -->
-    <div class='flex justify-end p-4 border-b border-gray-200'>
+    <div class='flex justify-between items-center p-6 border-b border-gray-200'>
+      <span class='text-lg font-semibold text-gray-900'>Menu</span>
       <button
         id='mobile-menu-close'
-        class='text-primary-700 text-3xl focus:outline-none focus:text-accent-600 transition-colors'
+        class='text-gray-900 hover:text-accent-600 focus:outline-none transition-colors p-2 -mr-2'
         aria-label='Close menu'
       >
-        ✕
+        <svg
+          class='w-6 h-6'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M6 18L18 6M6 6l12 12'
+          ></path>
+        </svg>
       </button>
     </div>
 
     <!-- Mobile Navigation Links -->
-    <nav class='flex flex-col p-6 space-y-4'>
+    <nav class='flex flex-col p-6 space-y-1 overflow-y-auto flex-grow'>
       <a
         href='/cakes'
-        class={`text-lg font-medium py-2 transition-colors ${isActive('cakes') ? 'text-accent-600' : 'text-primary-700 hover:text-accent-600'}`}
+        class={`text-base font-medium py-3 px-4 rounded-lg transition-all ${isActive('cakes') ? 'bg-accent-50 text-accent-600' : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'}`}
         >Cakes</a
       >
       <a
         href='/desserts'
-        class={`text-lg font-medium py-2 transition-colors ${isActive('desserts') ? 'text-accent-600' : 'text-primary-700 hover:text-accent-600'}`}
+        class={`text-base font-medium py-3 px-4 rounded-lg transition-all ${isActive('desserts') ? 'bg-accent-50 text-accent-600' : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'}`}
         >Desserts</a
       >
       <a
         href='/bubble-tea'
-        class={`text-lg font-medium py-2 transition-colors ${isActive('bubble-tea') ? 'text-accent-600' : 'text-primary-700 hover:text-accent-600'}`}
+        class={`text-base font-medium py-3 px-4 rounded-lg transition-all ${isActive('bubble-tea') ? 'bg-accent-50 text-accent-600' : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'}`}
         >Bubble Tea</a
       >
       <a
         href='/about'
-        class={`text-lg font-medium py-2 transition-colors ${isActive('about') ? 'text-accent-600' : 'text-primary-700 hover:text-accent-600'}`}
+        class={`text-base font-medium py-3 px-4 rounded-lg transition-all ${isActive('about') ? 'bg-accent-50 text-accent-600' : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'}`}
         >About</a
       >
       <a
         href='/contact'
-        class={`text-lg font-medium py-2 transition-colors ${isActive('contact') ? 'text-accent-600' : 'text-primary-700 hover:text-accent-600'}`}
+        class={`text-base font-medium py-3 px-4 rounded-lg transition-all ${isActive('contact') ? 'bg-accent-50 text-accent-600' : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'}`}
         >Contact</a
       >
 
       <!-- Mobile Utilities -->
-      <div class='border-t border-gray-200 pt-4 mt-4 space-y-4'>
+      <div class='border-t border-gray-200 pt-4 mt-4 space-y-1'>
+        <!-- Search in Mobile -->
+        <div class='px-4 py-3'>
+          <div
+            class='flex items-center space-x-2 px-4 py-2.5 rounded-lg bg-gray-50'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='h-5 w-5 text-gray-600'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+            </svg>
+            <input
+              type='text'
+              placeholder='Search'
+              class='bg-transparent border-none outline-none text-sm text-gray-900 placeholder-gray-500 w-full'
+              style='font-family: Poppins, sans-serif;'
+              aria-label='Search'
+            />
+          </div>
+        </div>
+        
         <a
           href='/account'
-          class='flex items-center space-x-3 text-lg font-medium py-2 text-primary-700 hover:text-accent-600 transition-colors'
+          class='flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-900 hover:bg-gray-50 active:bg-gray-100 transition-all'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            class='h-6 w-6'
+            class='h-5 w-5'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -230,26 +280,31 @@ const isActive = (page: string) => currentPage === page
               d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
             ></path>
           </svg>
-          <span>Account</span>
+          <span class='text-base font-medium'>Account</span>
         </a>
         <a
           href='/cart'
-          class='flex items-center space-x-3 text-lg font-medium py-2 text-primary-700 hover:text-accent-600 transition-colors'
+          class='flex items-center justify-between py-3 px-4 rounded-lg text-gray-900 hover:bg-gray-50 active:bg-gray-100 transition-all'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
+          <div class='flex items-center space-x-3'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='h-5 w-5'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'></path>
+            </svg>
+            <span class='text-base font-medium'>Cart</span>
+          </div>
+          <span class='bg-gray-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'
+            >0</span
           >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
-              d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'></path>
-          </svg>
-          <span>Cart (0)</span>
         </a>
       </div>
     </nav>
@@ -257,25 +312,57 @@ const isActive = (page: string) => currentPage === page
 </div>
 
 <script>
-  // Mobile menu toggle functionality
+  // Mobile menu toggle functionality with hamburger animation
   const menuButton = document.getElementById('mobile-menu-button')
   const mobileMenu = document.getElementById('mobile-menu')
   const mobileMenuOverlay = document.getElementById('mobile-menu-overlay')
   const closeButton = document.getElementById('mobile-menu-close')
 
+  let isMenuOpen = false
+
+  function toggleHamburger() {
+    const lines = menuButton?.querySelectorAll('.hamburger-line')
+    if (!lines) return
+
+    if (isMenuOpen) {
+      // Transform to X (menu is open)
+      lines[0].style.transform = 'rotate(45deg) translateY(8px)'
+      lines[1].style.opacity = '0'
+      lines[2].style.transform = 'rotate(-45deg) translateY(-8px)'
+      menuButton?.setAttribute('aria-expanded', 'true')
+    } else {
+      // Transform to hamburger (menu is closed)
+      lines[0].style.transform = 'rotate(0) translateY(0)'
+      lines[1].style.opacity = '1'
+      lines[2].style.transform = 'rotate(0) translateY(0)'
+      menuButton?.setAttribute('aria-expanded', 'false')
+    }
+  }
+
   function openMenu() {
+    isMenuOpen = true
     mobileMenu?.classList.remove('translate-x-full')
-    mobileMenuOverlay?.classList.remove('hidden')
+    mobileMenuOverlay?.classList.remove('opacity-0', 'invisible')
     document.body.style.overflow = 'hidden'
+    toggleHamburger()
   }
 
   function closeMenu() {
+    isMenuOpen = false
     mobileMenu?.classList.add('translate-x-full')
-    mobileMenuOverlay?.classList.add('hidden')
+    mobileMenuOverlay?.classList.add('opacity-0', 'invisible')
     document.body.style.overflow = ''
+    toggleHamburger()
   }
 
-  menuButton?.addEventListener('click', openMenu)
+  menuButton?.addEventListener('click', () => {
+    if (isMenuOpen) {
+      closeMenu()
+    } else {
+      openMenu()
+    }
+  })
+  
   closeButton?.addEventListener('click', closeMenu)
   mobileMenuOverlay?.addEventListener('click', closeMenu)
 
@@ -283,6 +370,13 @@ const isActive = (page: string) => currentPage === page
   const mobileNavLinks = mobileMenu?.querySelectorAll('a')
   mobileNavLinks?.forEach((link) => {
     link.addEventListener('click', closeMenu)
+  })
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      closeMenu()
+    }
   })
 </script>
 
