@@ -8,11 +8,7 @@ interface Props {
 const { heroData } = Astro.props
 
 // High-quality cake images for cascading card carousel
-const cakeImages = [
-  '/cake-strawberry-hq.svg',
-  '/cake-matcha-hq.svg',
-  '/cake-chocolate-hq.svg',
-]
+const cakeImages = ['/uploads/cake-18th.png', '/uploads/table-cake1.png']
 ---
 
 <section
@@ -65,10 +61,10 @@ const cakeImages = [
               class={`cake-card absolute transition-all duration-1000 ease-in-out ${index === 0 ? 'active' : ''}`}
               data-card={index}
               style={`
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                padding: 16px;
+                //:background: white;
+                // border-radius: 16px;
+                // box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+                //padding: 16px;
                 width: 100%;
                 max-width: 450px;
                 height: 100%;
@@ -92,7 +88,7 @@ const cakeImages = [
       </div>
 
       <!-- Card Carousel Dots -->
-      <div
+      <!-- <div
         class='absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3'
       >
         {
@@ -104,7 +100,7 @@ const cakeImages = [
             />
           ))
         }
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

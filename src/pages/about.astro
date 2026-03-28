@@ -1,37 +1,37 @@
 ---
 // About page - customize this content for your restaurant
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
+import Navigation from '../components/Navigation.astro'
+import Footer from '../components/Footer.astro'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Learn more about our restaurant" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset='UTF-8' />
+    <meta name='description' content='Learn more about our restaurant' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'
+      rel='stylesheet'
     />
     <title>About Us - YumYum</title>
   </head>
-  <body class="font-sans bg-slate-50" style="font-family: Poppins, sans-serif;">
-    <Navigation currentPage="about" />
+  <body class='font-sans bg-slate-50' style='font-family: Poppins, sans-serif;'>
+    <Navigation currentPage='about' />
 
     <!-- Development Notice Banner -->
     {
       !import.meta.env.PUBLIC_STRAPI_URL && (
-        <div class="bg-gradient-to-r from-accent-500 to-accent-600 text-white py-3 px-4">
-          <div class="max-w-7xl mx-auto text-center">
-            <p class="text-sm md:text-base">
+        <div class='bg-gradient-to-r from-accent-500 to-accent-600 text-white py-3 px-4'>
+          <div class='max-w-7xl mx-auto text-center'>
+            <p class='text-sm md:text-base'>
               🚀 <strong>Astro Restaurant Template - Starter Preview</strong> |
-              Customize this content in{" "}
-              <code class="bg-white/20 px-2 py-0.5 rounded">
+              Customize this content in{' '}
+              <code class='bg-white/20 px-2 py-0.5 rounded'>
                 src/pages/about.astro
               </code>
             </p>
@@ -42,41 +42,57 @@ import Footer from "../components/Footer.astro";
 
     <!-- About Header -->
     <section
-      class="bg-gradient-to-br from-primary-700 to-primary-900 text-white py-12 sm:py-16 lg:py-20"
+      class='bg-gradient-to-br from-primary-700 to-primary-900 text-white py-12 sm:py-16 lg:py-20'
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">About Us</h1>
-        <p class="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto px-4">
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+        <h1
+          class='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6'
+        >
+          About Us
+        </h1>
+        <p
+          class='text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto px-4'
+        >
           Discover our story, passion, and commitment to exceptional dining.
         </p>
       </div>
     </section>
 
     <!-- Our Story -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section class='py-12 sm:py-16 lg:py-20 bg-white'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div
+          class='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center'
+        >
           <div>
             <img
-              src="/placeholders/about.svg"
-              alt="Our Restaurant"
-              class="w-full h-auto rounded-2xl shadow-2xl"
+              src='/placeholders/about.svg'
+              alt='Our Restaurant'
+              class='w-full h-auto rounded-2xl shadow-2xl'
             />
           </div>
           <div>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-primary-700">Our Story</h2>
-            <p class="text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed">
+            <h2
+              class='text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-primary-700'
+            >
+              Our Story
+            </h2>
+            <p
+              class='text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed'
+            >
               Founded in [Year], Restaurant Name has been serving our community
               with passion, quality, and dedication. What started as a dream has
               grown into a beloved dining destination.
             </p>
-            <p class="text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed">
+            <p
+              class='text-gray-600 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed'
+            >
               Our commitment is simple: serve exceptional food made from the
               finest ingredients, prepared with care by our talented team of
               chefs. Every dish tells a story and reflects our dedication to
               culinary excellence.
             </p>
-            <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+            <p class='text-gray-600 text-base sm:text-lg leading-relaxed'>
               We believe that great food brings people together, creating
               memories that last a lifetime. That's why we pour our hearts into
               every meal we serve.
@@ -87,38 +103,44 @@ import Footer from "../components/Footer.astro";
     </section>
 
     <!-- Our Values -->
-    <section class="py-12 sm:py-16 lg:py-20 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 text-primary-700">
+    <section class='py-12 sm:py-16 lg:py-20 bg-slate-50'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <h2
+          class='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 text-primary-700'
+        >
           Our Values
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg text-center">
-            <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🌟</div>
-            <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-primary-700">
+        <div
+          class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'
+        >
+          <div class='bg-white p-6 sm:p-8 rounded-2xl shadow-lg text-center'>
+            <div class='text-4xl sm:text-5xl mb-3 sm:mb-4'>🌟</div>
+            <h3
+              class='text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-primary-700'
+            >
               Quality
             </h3>
-            <p class="text-gray-600 leading-relaxed">
+            <p class='text-gray-600 leading-relaxed'>
               We never compromise on quality. From ingredient selection to final
               presentation, excellence is our standard.
             </p>
           </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
-            <div class="text-5xl mb-4">❤️</div>
-            <h3 class="text-2xl font-semibold mb-4 text-primary-700">
+          <div class='bg-white p-8 rounded-2xl shadow-lg text-center'>
+            <div class='text-5xl mb-4'>❤️</div>
+            <h3 class='text-2xl font-semibold mb-4 text-primary-700'>
               Passion
             </h3>
-            <p class="text-gray-600 leading-relaxed">
+            <p class='text-gray-600 leading-relaxed'>
               Our love for food and hospitality drives everything we do. We're
               passionate about creating memorable experiences.
             </p>
           </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
-            <div class="text-5xl mb-4">🤝</div>
-            <h3 class="text-2xl font-semibold mb-4 text-primary-700">
+          <div class='bg-white p-8 rounded-2xl shadow-lg text-center'>
+            <div class='text-5xl mb-4'>🤝</div>
+            <h3 class='text-2xl font-semibold mb-4 text-primary-700'>
               Community
             </h3>
-            <p class="text-gray-600 leading-relaxed">
+            <p class='text-gray-600 leading-relaxed'>
               We're proud to be part of this community, supporting local
               suppliers and creating a welcoming space for all.
             </p>
@@ -128,17 +150,17 @@ import Footer from "../components/Footer.astro";
     </section>
 
     <!-- Team Section (Optional) -->
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center mb-6 text-primary-700">
+    <section class='py-20 bg-white'>
+      <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <h2 class='text-4xl font-bold text-center mb-6 text-primary-700'>
           Meet Our Team
         </h2>
-        <p class="text-center text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
+        <p class='text-center text-gray-600 mb-12 text-lg max-w-2xl mx-auto'>
           Behind every great meal is a team of dedicated professionals who bring
           creativity, skill, and passion to the table.
         </p>
-        <div class="text-center">
-          <p class="text-gray-600 text-lg">
+        <div class='text-center'>
+          <p class='text-gray-600 text-lg'>
             Our talented chefs, servers, and staff work together to ensure your
             dining experience is nothing short of exceptional.
           </p>

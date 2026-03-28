@@ -17,20 +17,30 @@ const isActive = (page: string) => currentPage === page
     class='mx-auto px-4 sm:px-6 lg:px-14'
     style='max-width: 1440px; min-height: 80px; display: flex; align-items: center;'
   >
-    <div class='flex justify-between items-center w-full py-4'>
+    <div class='flex items-center w-full py-4'>
       <div class='flex items-center'>
         <a
           href='/'
-          class='flex items-center hover:opacity-80 transition-opacity'
+          class='flex items-center gap-3 sm:gap-4 hover:opacity-80 transition-opacity'
         >
-          <img src='/logo.jpg' alt='YumYum' class='h-12 sm:h-14 lg:h-16 w-auto' />
+          <img
+            src='/logo.jpg'
+            alt='YumYum'
+            class='h-12 sm:h-14 lg:h-16 w-auto'
+          />
+          <span
+            class='text-xl sm:text-2xl lg:text-3xl font-semibold'
+            style='font-family: Poppins, sans-serif; color: #1a1a1a; letter-spacing: -0.02em;'
+          >
+            YumYum Bakery
+          </span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div
-        class='hidden lg:flex items-center'
-        style='font-family: Poppins, sans-serif; gap: 60px;'
+        class='hidden lg:flex items-center lg:ml-auto'
+        style='font-family: Poppins, sans-serif; gap: 80px;'
       >
         <a
           href='/cakes'
@@ -68,7 +78,7 @@ const isActive = (page: string) => currentPage === page
       <div class='hidden lg:flex items-center space-x-6'>
         <!-- Search -->
         <div
-          class='flex items-center space-x-2 px-4 py-2 rounded-md'
+          class='hidden flex items-center space-x-2 px-4 py-2 rounded-md'
           style='background-color: #f5f5f5;'
         >
           <svg
@@ -119,7 +129,7 @@ const isActive = (page: string) => currentPage === page
         <!-- Shopping Cart -->
         <a
           href='/cart'
-          class='relative text-gray-700 hover:text-accent-600 transition-colors'
+          class='hidden relative text-gray-700 hover:text-accent-600 transition-colors'
           aria-label='Shopping cart'
         >
           <svg
@@ -198,8 +208,7 @@ const isActive = (page: string) => currentPage === page
             stroke-linecap='round'
             stroke-linejoin='round'
             stroke-width='2'
-            d='M6 18L18 6M6 6l12 12'
-          ></path>
+            d='M6 18L18 6M6 6l12 12'></path>
         </svg>
       </button>
     </div>
@@ -235,7 +244,7 @@ const isActive = (page: string) => currentPage === page
       <!-- Mobile Utilities -->
       <div class='border-t border-gray-200 pt-4 mt-4 space-y-1'>
         <!-- Search in Mobile -->
-        <div class='px-4 py-3'>
+        <div class='hidden px-4 py-3'>
           <div
             class='flex items-center space-x-2 px-4 py-2.5 rounded-lg bg-gray-50'
           >
@@ -261,7 +270,7 @@ const isActive = (page: string) => currentPage === page
             />
           </div>
         </div>
-        
+
         <a
           href='/account'
           class='flex items-center space-x-3 py-3 px-4 rounded-lg text-gray-900 hover:bg-gray-50 active:bg-gray-100 transition-all'
@@ -284,7 +293,7 @@ const isActive = (page: string) => currentPage === page
         </a>
         <a
           href='/cart'
-          class='flex items-center justify-between py-3 px-4 rounded-lg text-gray-900 hover:bg-gray-50 active:bg-gray-100 transition-all'
+          class='hidden flex items-center justify-between py-3 px-4 rounded-lg text-gray-900 hover:bg-gray-50 active:bg-gray-100 transition-all'
         >
           <div class='flex items-center space-x-3'>
             <svg
@@ -302,7 +311,8 @@ const isActive = (page: string) => currentPage === page
             </svg>
             <span class='text-base font-medium'>Cart</span>
           </div>
-          <span class='bg-gray-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'
+          <span
+            class='bg-gray-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'
             >0</span
           >
         </a>
@@ -362,7 +372,7 @@ const isActive = (page: string) => currentPage === page
       openMenu()
     }
   })
-  
+
   closeButton?.addEventListener('click', closeMenu)
   mobileMenuOverlay?.addEventListener('click', closeMenu)
 
